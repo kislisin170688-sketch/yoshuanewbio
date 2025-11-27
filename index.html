@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Osmium Studio | TikTok</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #000;
+            color: #fff;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            position: relative;
+        }
+        
+        /* Анимированный градиентный фон */
+        .gradient-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+            z-index: -1;
+            opacity: 0.7;
+        }
+        
+        @keyframes gradient {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+        
+        /* Основной контент */
+        .content {
+            text-align: center;
+            max-width: 800px;
+            z-index: 1;
+        }
+        
+        .logo {
+            font-size: 4rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #ff0099, #493240);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: pulse 2s infinite alternate;
+        }
+        
+        @keyframes pulse {
+            from {
+                transform: scale(1);
+                text-shadow: 0 0 10px rgba(255, 0, 153, 0.5);
+            }
+            to {
+                transform: scale(1.05);
+                text-shadow: 0 0 20px rgba(255, 0, 153, 0.8);
+            }
+        }
+        
+        .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 3rem;
+            color: #ccc;
+            animation: fadeIn 2s ease-out;
+        }
+        
+        /* TikTok секция */
+        .tiktok-section {
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 20px;
+            padding: 30px;
+            margin: 2rem 0;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            animation: slideUp 1.5s ease-out;
+            max-width: 500px;
+        }
+        
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .tiktok-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            color: #fff;
+            text-shadow: 0 0 10px #ff0050;
+            animation: tiktokGlow 3s infinite alternate;
+        }
+        
+        @keyframes tiktokGlow {
+            0% {
+                text-shadow: 0 0 10px #ff0050, 0 0 20px #ff0050;
+            }
+            50% {
+                text-shadow: 0 0 15px #00f2ea, 0 0 25px #00f2ea;
+            }
+            100% {
+                text-shadow: 0 0 10px #ff0050, 0 0 20px #ff0050;
+            }
+        }
+        
+        .tiktok-title {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, #ff0050, #00f2ea);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .tiktok-handle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            color: #fff;
+        }
+        
+        .tiktok-link {
+            display: inline-block;
+            padding: 12px 30px;
+            background: linear-gradient(45deg, #ff0050, #00f2ea);
+            color: white;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255, 0, 80, 0.4);
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+        
+        .tiktok-link:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(255, 0, 80, 0.6);
+        }
+        
+        /* Анимированные элементы */
+        .floating-elements {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+        
+        .floating-element {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            animation: float 15s infinite linear;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+            25% {
+                transform: translate(20px, 40px) rotate(90deg);
+            }
+            50% {
+                transform: translate(40px, 0) rotate(180deg);
+            }
+            75% {
+                transform: translate(20px, -40px) rotate(270deg);
+            }
+            100% {
+                transform: translate(0, 0) rotate(360deg);
+            }
+        }
+        
+        /* Музыкальный контроллер */
+        .music-player {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 50px;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .music-btn {
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .music-btn:hover {
+            color: #ff0050;
+        }
+        
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 2.5rem;
+            }
+            
+            .subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .tiktok-section {
+                padding: 20px;
+            }
+            
+            .tiktok-icon {
+                font-size: 3rem;
+            }
+            
+            .tiktok-title {
+                font-size: 1.5rem;
+            }
+            
+            .tiktok-handle {
+                font-size: 1.2rem;
+            }
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Анимированный градиентный фон -->
+        <div class="gradient-bg"></div>
+        
+        <!-- Плавающие элементы -->
+        <div class="floating-elements">
+            <div class="floating-element" style="width: 100px; height: 100px; top: 10%; left: 10%;"></div>
+            <div class="floating-element" style="width: 150px; height: 150px; top: 60%; left: 80%;"></div>
+            <div class="floating-element" style="width: 70px; height: 70px; top: 80%; left: 20%;"></div>
+            <div class="floating-element" style="width: 120px; height: 120px; top: 20%; left: 70%;"></div>
+        </div>
+        
+        <!-- Основной контент -->
+        <div class="content">
+            <h1 class="logo">OSMIUM STUDIO</h1>
+            <p class="subtitle">Creating Digital Experiences</p>
+            
+            <!-- TikTok секция -->
+            <div class="tiktok-section">
+                <i class="fab fa-tiktok tiktok-icon"></i>
+                <h2 class="tiktok-title">Follow Us on TikTok</h2>
+                <p class="tiktok-handle">@yoshhhua</p>
+                <a href="https://www.tiktok.com/@yoshhhua" target="_blank" class="tiktok-link">
+                    Visit Our TikTok
+                </a>
+            </div>
+        </div>
+        
+        <!-- Музыкальный контроллер -->
+        <div class="music-player">
+            <button class="music-btn" id="play-btn">
+                <i class="fas fa-play"></i>
+            </button>
+            <span>Background Music</span>
+        </div>
+    </div>
+
+    <!-- Аудио элемент -->
+    <audio id="bg-music" loop>
+        <source src="https://assets.codepen.io/1468070/ambient-music.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        // Автоматическое воспроизведение музыки
+        const music = document.getElementById('bg-music');
+        const playBtn = document.getElementById('play-btn');
+        let isPlaying = true;
+        
+        // Попытка автоматического воспроизведения
+        document.addEventListener('DOMContentLoaded', function() {
+            const playPromise = music.play();
+            
+            if (playPromise !== undefined) {
+                playPromise.catch(error => {
+                    console.log("Автовоспроизведение заблокировано. Музыка начнется после взаимодействия с пользователем.");
+                    isPlaying = false;
+                    updatePlayButton();
+                    
+                    // Добавляем обработчик для первого клика на странице
+                    document.body.addEventListener('click', function startMusic() {
+                        if (!isPlaying) {
+                            music.play();
+                            isPlaying = true;
+                            updatePlayButton();
+                        }
+                        document.body.removeEventListener('click', startMusic);
+                    }, { once: true });
+                });
+            }
+        });
+        
+        // Управление воспроизведением
+        playBtn.addEventListener('click', function() {
+            if (isPlaying) {
+                music.pause();
+                isPlaying = false;
+            } else {
+                music.play();
+                isPlaying = true;
+            }
+            updatePlayButton();
+        });
+        
+        function updatePlayButton() {
+            if (isPlaying) {
+                playBtn.innerHTML = '<i class="fas fa-pause"></i>';
+            } else {
+                playBtn.innerHTML = '<i class="fas fa-play"></i>';
+            }
+        }
+        
+        // Создание дополнительных плавающих элементов
+        document.addEventListener('DOMContentLoaded', function() {
+            const floatingElements = document.querySelector('.floating-elements');
+            
+            for (let i = 0; i < 5; i++) {
+                const element = document.createElement('div');
+                element.classList.add('floating-element');
+                
+                const size = Math.random() * 100 + 50;
+                const top = Math.random() * 100;
+                const left = Math.random() * 100;
+                const delay = Math.random() * 20;
+                
+                element.style.width = `${size}px`;
+                element.style.height = `${size}px`;
+                element.style.top = `${top}%`;
+                element.style.left = `${left}%`;
+                element.style.animationDelay = `${delay}s`;
+                element.style.background = `rgba(255, 255, 255, ${Math.random() * 0.1})`;
+                
+                floatingElements.appendChild(element);
+            }
+        });
+    </script>
+</body>
+</html>
